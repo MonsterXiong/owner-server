@@ -52,6 +52,8 @@ jobs:
         run: |
           git pull origin master
           git remote remove origin
+      - name: 停止容器删除容器&& 删除镜像
+        run: docker stop server && docker rm server && docker rmi owner-server
       - name: 构建Docker镜像
          run: docker build -t owner-server .
       - name: 启动Docker容器
