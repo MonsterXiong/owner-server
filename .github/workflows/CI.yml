@@ -44,17 +44,15 @@ jobs:
           rm -rf owner-server
           git clone git@github.com:MonsterXiong/owner-server.git
           cd owner-server
-          "
-      # git remote add origin https://MonsterXiong:${{secrets.PASSWORD}}@github.com/owner-server.git
-      - name: Pull && 移除源
-        run: |
           git pull origin master
           git remote remove origin
-     # - name: 停止容器删除容器&& 删除镜像
-      #  run: docker stop server && docker rm server && docker rmi owner-server
-      - name: 构建Docker镜像
-        run: docker build -t owner-server .
-      - name: 启动Docker容器
-        run: docker run -p 4007:3000 -d --name server owner-server
+          docker build -t owner-server .
+          docker run -p 4007:3000 -d --name server owner-server
+          "
+      # git remote add origin https://MonsterXiong:${{secrets.PASSWORD}}@github.com/owner-server.git
+      # docker stop server && docker rm server && docker rmi owner-server
+        
+      - name: 什么位置
+        run: pwd
       - name: 删除 ssh key
         run: rm -rf ~/.ssh/id_rsa
