@@ -37,15 +37,14 @@ jobs:
           echo "${{secrets.RSA}}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan "${{secrets.SERVER_IP}}" >> ~/.ssh/known_hosts
-      - name: 登录服务器
+      - name: 登录服务器 && 拉项目
         run: |
           ssh root@${{secrets.SERVER_IP}} "
           cd /home/task
           rm -rf owner-server
-          git clone git@github.com:MonsterXiong/owner-server.git 
+          git clone git@github.com:MonsterXiong/owner-server.git
+          cd owner-server
           "
-      - name: 进入项目文件夹
-        run: cd owner-server
       # git remote add origin https://MonsterXiong:${{secrets.PASSWORD}}@github.com/owner-server.git
       - name: Pull && 移除源
         run: |
