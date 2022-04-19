@@ -58,7 +58,8 @@ jobs:
       - name: 什么位置
         run: |
           pwd
-          cd /home/task
+          ls
+          cd ~
           pwd
       - name: 删除 ssh key
         run: rm -rf ~/.ssh/id_rsa
