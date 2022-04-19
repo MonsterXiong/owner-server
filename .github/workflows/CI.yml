@@ -46,13 +46,19 @@ jobs:
           cd owner-server
           git pull origin master
           git remote remove origin
+          docker stop server 
+          docker rm server 
+          docker rmi owner-server
           docker build -t owner-server .
           docker run -p 4007:3000 -d --name server owner-server
           "
       # git remote add origin https://MonsterXiong:${{secrets.PASSWORD}}@github.com/owner-server.git
-      # docker stop server && docker rm server && docker rmi owner-server
+      # 
         
       - name: 什么位置
-        run: pwd
+        run: |
+          pwd
+          cd /home/task
+          pwd
       - name: 删除 ssh key
         run: rm -rf ~/.ssh/id_rsa
