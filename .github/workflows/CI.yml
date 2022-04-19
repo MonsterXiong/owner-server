@@ -40,10 +40,10 @@ jobs:
       - name: deploy
         run: |
           ssh root@${{secrets.SERVER_IP}} "
-          cd /home;
-          mkdir task
-          cd task
+          cd /home/task;
+          rm -rf owner-server
           git clone https://github.com/MonsterXiong/owner-server.git
+          cd owner-server
           git remote add origin https://MonsterXiong:${{secrets.PASSWORD}}@github.com/owner-server.git;
           git pull origin master;
           git remote remove origin;
