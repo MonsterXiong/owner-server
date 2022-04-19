@@ -47,11 +47,11 @@ jobs:
         run: |
           git clone https://github.com/MonsterXiong/owner-server.git
           cd owner-server
-          git remote add origin https://MonsterXiong:${{secrets.PASSWORD}}@github.com/owner-server.git;
+          git remote add origin https://MonsterXiong:${{secrets.PASSWORD}}@github.com/owner-server.git
       - name: Pull && 移除源
         run: |
-          git pull origin master;
-          git remote remove origin;
+          git pull origin master
+          git remote remove origin
       - name: 构建Docker镜像
          run: docker build -t owner-server .
       - name: 启动Docker容器
