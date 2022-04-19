@@ -31,22 +31,23 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - name: set ssh key
+      - name: 设置 ssh key
         run: |
           mkdir -p ~/.ssh/
           echo "${{secrets.RSA}}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan "${{secrets.SERVER_IP}}" >> ~/.ssh/known_hosts
-      - name: deploy
+      - name: 开始部署
         run: |
           ssh root@${{secrets.SERVER_IP}} "
-          cd /home/task;
-          rm -rf owner-server
-          git clone https://github.com/MonsterXiong/owner-server.git
-          cd owner-server
+          cd /home/task/owner-server;
+          # git clone https://github.com/MonsterXiong/owner-server.git
+          # cd owner-server
           git remote add origin https://MonsterXiong:${{secrets.PASSWORD}}@github.com/owner-server.git;
           git pull origin master;
           git remote remove origin;
+          docker build -t owner-server .
+          docker run -p 4007:3000 -d --name server owner-server
           "
-      - name: delete ssh key
+      - name: 删除 ssh key
         run: rm -rf ~/.ssh/id_rsa
