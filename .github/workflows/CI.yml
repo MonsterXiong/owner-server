@@ -42,7 +42,7 @@ jobs:
           ssh root@${{secrets.SERVER_IP}} "
           cd /home/task
           rm -rf owner-server
-          git clone https://github.com/MonsterXiong/owner-server.git 
+          git clone git://github.com/MonsterXiong/owner-server.git 
           "
       - name: 进入项目文件夹
         run: cd owner-server
