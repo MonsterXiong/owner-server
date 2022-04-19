@@ -57,6 +57,6 @@ jobs:
       - name: 构建Docker镜像
         run: docker build -t owner-server .
       - name: 启动Docker容器
-        run:  docker run -p 4007:3000 -d --name server owner-server
+        run: docker run -p 4007:3000 -d --name server owner-server
       - name: 删除 ssh key
         run: rm -rf ~/.ssh/id_rsa
