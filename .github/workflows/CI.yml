@@ -42,9 +42,8 @@ jobs:
           ssh root@${{secrets.SERVER_IP}} "
           cd /home/task
           rm -rf owner-server
+          git clone https://github.com/MonsterXiong/owner-server.git 
           "
-      - name: Clone && 添加源
-        run: git clone https://github.com/MonsterXiong/owner-server.git 
         if: success()
       - name: 进入项目文件夹
         run: cd owner-server
