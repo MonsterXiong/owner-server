@@ -1,67 +1,67 @@
 {
-    "name": "owner-server",
-    "version": "0.1.0",
-    "private": true,
-    "scripts": {
-        "dev": "cross-env NODE_ENV=dev nodemon bin/www",
-        "prd-dev": "cross-env NODE_ENV=prd_dev pm2 start bin/pm2-prd-dev.config.js",
-        "prd": "cross-env NODE_ENV=production nodemon bin/pm2AppConf.js",
-        "test:local": "cross-env NODE_ENV=test_local jest --runInBand  --passWithNoTests --colors --forceExit",
-        "test:remote": "cross-env NODE_ENV=test_remote jest --runInBand  --passWithNoTests --colors --forceExit",
-        "lint": "eslint \"src/**/*.{js,ts}\"",
-        "lint-fix": "eslint --fix \"src/**/*.{js,ts}\""
-    },
-    "dependencies": {
-        "ajv": "^8.11.0",
-        "axios": "^0.26.1",
-        "debug": "^4.1.1",
-        "jest": "^27.5.1",
-        "jsonwebtoken": "^8.5.1",
-        "koa": "^2.7.0",
-        "koa-bodyparser": "^4.2.1",
-        "koa-convert": "^1.2.0",
-        "koa-json": "^2.0.2",
-        "koa-logger": "^3.2.0",
-        "koa-onerror": "^4.1.0",
-        "koa-router": "^7.4.0",
-        "koa-static": "^5.0.0",
-        "koa-views": "^6.2.0",
-        "lodash": "^4.17.21",
-        "mongoose": "^6.3.1",
-        "mysql2": "^2.3.3",
-        "pm2": "^5.2.0",
-        "pug": "^2.0.3",
-        "redis": "^3.1.2",
-        "require-all": "^3.0.0",
-        "sequelize": "^6.19.0",
-        "simple-git": "^3.7.1",
-        "supertest": "^6.2.2",
-        "uuid": "^8.3.2"
-    },
-    "devDependencies": {
-        "commitlint": "^16.2.3",
-        "commitlint-config-cz": "^0.13.3",
-        "cross-env": "^7.0.3",
-        "cz-customizable": "^6.3.0",
-        "eslint": "^8.14.0",
-        "eslint-config-airbnb-base": "^15.0.0",
-        "eslint-config-prettier": "^8.5.0",
-        "eslint-plugin-import": "^2.26.0",
-        "eslint-plugin-prettier": "^4.0.0",
-        "husky": "^7.0.4",
-        "lint-staged": "^12.4.0",
-        "nodemon": "^1.19.1",
-        "prettier": "^2.6.2"
-    },
-    "lint-staged": {
-        "*.js": [
-            "npm run lint",
-            "npm run test:local"
-        ]
-    },
-    "config": {
-        "commitizen": {
-            "path": "node_modules/cz-customizable"
-        }
+  "name": "owner-server",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "cross-env NODE_ENV=dev nodemon bin/www",
+    "prd-dev": "cross-env NODE_ENV=prd_dev pm2 start bin/www",
+    "prd": "cross-env NODE_ENV=production nodemon bin/pm2AppConf.js",
+    "test:local": "cross-env NODE_ENV=test_local jest --runInBand  --passWithNoTests --colors --forceExit",
+    "test:remote": "cross-env NODE_ENV=test_remote jest --runInBand  --passWithNoTests --colors --forceExit",
+    "lint": "eslint \"src/**/*.{js,ts}\"",
+    "lint-fix": "eslint --fix \"src/**/*.{js,ts}\""
+  },
+  "dependencies": {
+    "ajv": "^8.11.0",
+    "axios": "^0.26.1",
+    "debug": "^4.1.1",
+    "jest": "^27.5.1",
+    "jsonwebtoken": "^8.5.1",
+    "koa": "^2.7.0",
+    "koa-bodyparser": "^4.2.1",
+    "koa-convert": "^1.2.0",
+    "koa-json": "^2.0.2",
+    "koa-logger": "^3.2.0",
+    "koa-onerror": "^4.1.0",
+    "koa-router": "^7.4.0",
+    "koa-static": "^5.0.0",
+    "koa-views": "^6.2.0",
+    "lodash": "^4.17.21",
+    "mongoose": "^6.3.1",
+    "mysql2": "^2.3.3",
+    "pm2": "^5.2.0",
+    "pug": "^2.0.3",
+    "redis": "^3.1.2",
+    "require-all": "^3.0.0",
+    "sequelize": "^6.19.0",
+    "simple-git": "^3.7.1",
+    "supertest": "^6.2.2",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "commitlint": "^16.2.3",
+    "commitlint-config-cz": "^0.13.3",
+    "cross-env": "^7.0.3",
+    "cz-customizable": "^6.3.0",
+    "eslint": "^8.14.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "husky": "^7.0.4",
+    "lint-staged": "^12.4.0",
+    "nodemon": "^1.19.1",
+    "prettier": "^2.6.2"
+  },
+  "lint-staged": {
+    "*.js": [
+      "npm run lint",
+      "npm run test:local"
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-customizable"
     }
+  }
 }
