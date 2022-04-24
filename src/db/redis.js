@@ -3,19 +3,19 @@
  * /src/db/redis.js
  */
 
-const redis = require("redis");
-const { redisConfig } = require("../config/index");
+const redis = require('redis')
+const { redisConfig } = require('../config/index')
 
 // 创建客户端
-const { port, host, password } = redisConfig;
-const opt = {};
+const { port, host, password } = redisConfig
+const opt = {}
 if (password) {
-  opt.password = password; // prd 环境需要密码
+    opt.password = password // prd 环境需要密码
 }
-const redisClient = redis.createClient(port, host, opt);
-redisClient.on("error", (err) => {
-  console.error("redis connect error", err);
-});
+const redisClient = redis.createClient(port, host, opt)
+redisClient.on('error', err => {
+    console.error('redis connect error', err)
+})
 // 运行node src/db/redis.js 测试连接
 // redisClient.on("connect", () => {
 //   console.log("redis connect success");
@@ -25,4 +25,4 @@ redisClient.on("error", (err) => {
 //   redisClient.quit();
 // });
 
-module.exports = redisClient;
+module.exports = redisClient

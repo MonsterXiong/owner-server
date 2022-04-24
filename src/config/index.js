@@ -1,10 +1,13 @@
-const env = process.env.NODE_ENV;
+const { isPrd, isPrdDev } = require('../utils/env')
 
-let filename = "dev.js";
+let filename = 'dev.js'
 
-if (env === "prd-dev") {
-  filename = "prd-dev.js";
+if (isPrdDev) {
+    filename = 'prd-dev.js'
 }
-const conf = require(`./env/${filename}`);
+if (isPrd) {
+    filename = 'prd.js'
+}
+const conf = require(`./env/${filename}`)
 
-module.exports = conf;
+module.exports = conf

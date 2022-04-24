@@ -1,35 +1,36 @@
-const router = require("koa-router")();
-const testMysql = require("../db/mysql");
-const { cacheSet, cacheGet } = require("../cache/index");
-const { UserModel } = require("../models/UserModel");
-router.get("/", async (ctx, next) => {
-  ctx.body = "测试好了吗";
-});
+const router = require('koa-router')()
+const testMysql = require('../db/mysql')
+const { cacheSet, cacheGet } = require('../cache/index')
+const { WorkContentModel } = require('../models/WorkContentModel')
 
-router.get("/api/dbcheck", async (ctx) => {
-  const mysqlRes = await testMysql();
+router.get('/', async (ctx, next) => {
+    ctx.body = '测试好了吗'
+})
 
-  let mongodbConn;
-  try {
-    mongodbConn = true;
-    await UserModel.findOne();
-  } catch (ex) {
-    mongodbConn = false;
-  }
+router.get('/api/dbcheck', async ctx => {
+    const mysqlRes = await testMysql()
 
-  // 测试 redis 连接
-  cacheSet("name", "sever OK - by redis");
-  const redisTestVal = await cacheGet("name");
+    let mongodbConn
+    try {
+        mongodbConn = true
+        await WorkContentModel.findOne()
+    } catch (ex) {
+        mongodbConn = false
+    }
 
-  ctx.body = {
-    code: 0,
-    data: {
-      name: "test mysql",
-      mysqlConn: mysqlRes.length > 0,
-      redisConn: redisTestVal != null,
-      mongodbConn,
-    },
-  };
-});
+    // 测试 redis 连接
+    cacheSet('name', 'sever OK - by redis')
+    const redisTestVal = await cacheGet('name')
 
-module.exports = router;
+    ctx.body = {
+        errno: 0,
+        data: {
+            name: 'test mysql',
+            mysqlConn: mysqlRes.length > 0,
+            redisConn: redisTestVal != null,
+            mongodbConn,
+        },
+    }
+})
+
+module.exports = router

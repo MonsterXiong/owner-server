@@ -5,28 +5,17 @@ name: Node.js CI
 
 on:
   push:
-    branches: [master]
+    - "dev"
+  paths:
+    - ".github/workflows/*"
+    # - '__test__/**' # dev 不需要立即测试
+    - "src/**"
+    - "Dockerfile"
+    - "docker-compose.yml"
+    - "bin/*"
 
 jobs:
-  # build:
-  #   runs-on: ubuntu-latest
-
-  #   strategy:
-  #     matrix:
-  #       node-version: [12.x, 14.x, 16.x]
-  #       # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-
-  #   steps:
-  #     - uses: actions/checkout@v2
-  #     - name: Use Node.js ${{ matrix.node-version }}
-  #       uses: actions/setup-node@v2
-  #       with:
-  #         node-version: ${{ matrix.node-version }}
-  #         cache: "npm"
-  #     - run: npm ci
-  #     - run: npm run lint
-  #     - run: npm run test:local
-  deploy:
+  deploy-dev:
     runs-on: ubuntu-latest
 
     steps:
@@ -44,26 +33,13 @@ jobs:
           rm -rf owner-server
           git clone git@github.com:MonsterXiong/owner-server.git
           cd owner-server
-          git pull origin master
+          git checkout dev;
+          git pull origin dev
           git remote remove origin
-          # docker-compose down
-          # if:alway()
           docker-compose build owner-server
           docker-compose up -d
-          # docker stop server
-          # docker rm server
-          # docker rmi owner-server
-          # docker build -t owner-server .
-          # docker run -p 4007:3000 -d --name server owner-server
           "
       # git remote add origin https://MonsterXiong:${{secrets.PASSWORD}}@github.com/owner-server.git
       #
-
-      - name: 什么位置
-        run: |
-          pwd
-          ls
-          cd ~
-          pwd
       - name: 删除 ssh key
         run: rm -rf ~/.ssh/id_rsa
