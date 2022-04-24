@@ -3,19 +3,7 @@ const testMysql = require("../db/mysql");
 const { cacheSet, cacheGet } = require("../cache/index");
 const { UserModel } = require("../models/UserModel");
 router.get("/", async (ctx, next) => {
-  await ctx.render("index", {
-    title: "Hello Koa 2!",
-  });
-});
-
-router.get("/string", async (ctx, next) => {
-  ctx.body = "koa2 string";
-});
-
-router.get("/json", async (ctx, next) => {
-  ctx.body = {
-    title: "koa2 json",
-  };
+  ctx.body = "hello monster";
 });
 
 router.get("/api/dbcheck", async (ctx) => {
