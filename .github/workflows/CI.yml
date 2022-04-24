@@ -46,8 +46,8 @@ jobs:
           cd owner-server
           git pull origin master
           git remote remove origin
-          # docker-compose down
-          # if:alway()
+          docker-compose down
+          if:alway()
           docker-compose build owner-server
           docker-compose up -d
           # docker stop server
