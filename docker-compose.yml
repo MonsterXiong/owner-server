@@ -1,5 +1,5 @@
 # docker-compose.yml
-version: "3"
+version: '3'
 services:
   owner-server: # service name
     build:
@@ -29,7 +29,7 @@ services:
     volumes:
       - .docker-volumes/mysql/log:/var/log/mysql # 记录日志
       - .docker-volumes/mysql/data:/var/lib/mysql # 数据持久化
-      # - ./mysql/init:/docker-entrypoint-initdb.d/ # 初始化 sql
+      - ./mysql/init:/docker-entrypoint-initdb.d/ # 初始化 sql
     environment:
       - MYSQL_DATABASE=owner-server # 初始化容器时创建数据库
       - MYSQL_ROOT_PASSWORD=123456
@@ -39,9 +39,9 @@ services:
     container_name: owner-server-mongo
     restart: always
     volumes:
-      - ".docker-volumes/mongo/data:/data/db" # 数据持久化
+      - '.docker-volumes/mongo/data:/data/db' # 数据持久化
     environment:
       - MONGO_INITDB_DATABASE=owner-server
       - TZ=Asia/Shanghai # 设置时区
     ports:
-      - "27016:27017" # 宿主机可以用 127.0.0.1:27016 即可连接容器中的数据库
+      - '27016:27017' # 宿主机可以用 127.0.0.1:27016 即可连接容器中的数据库
