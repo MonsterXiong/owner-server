@@ -4,7 +4,7 @@ const { cacheSet, cacheGet } = require('../cache/index')
 const { WorkContentModel } = require('../models/WorkContentModel')
 
 router.get('/', async (ctx, next) => {
-  ctx.body = '远程接口测试'
+  ctx.body = '远程接口测试2'
 })
 
 router.get('/api/dbcheck', async ctx => {
