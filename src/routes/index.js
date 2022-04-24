@@ -3,7 +3,7 @@ const testMysql = require("../db/mysql");
 const { cacheSet, cacheGet } = require("../cache/index");
 const { UserModel } = require("../models/UserModel");
 router.get("/", async (ctx, next) => {
-  ctx.body = "hello monster";
+  ctx.body = "hello monster1111";
 });
 
 router.get("/api/dbcheck", async (ctx) => {
