@@ -4,33 +4,33 @@ const { cacheSet, cacheGet } = require('../cache/index')
 const { WorkContentModel } = require('../models/WorkContentModel')
 
 router.get('/', async (ctx, next) => {
-    ctx.body = '测试好了吗'
+  ctx.body = '远程接口测试'
 })
 
 router.get('/api/dbcheck', async ctx => {
-    const mysqlRes = await testMysql()
+  const mysqlRes = await testMysql()
 
-    let mongodbConn
-    try {
-        mongodbConn = true
-        await WorkContentModel.findOne()
-    } catch (ex) {
-        mongodbConn = false
-    }
+  let mongodbConn
+  try {
+    mongodbConn = true
+    await WorkContentModel.findOne()
+  } catch (ex) {
+    mongodbConn = false
+  }
 
-    // 测试 redis 连接
-    cacheSet('name', 'sever OK - by redis')
-    const redisTestVal = await cacheGet('name')
+  // 测试 redis 连接
+  cacheSet('name', 'sever OK - by redis')
+  const redisTestVal = await cacheGet('name')
 
-    ctx.body = {
-        errno: 0,
-        data: {
-            name: 'test mysql',
-            mysqlConn: mysqlRes.length > 0,
-            redisConn: redisTestVal != null,
-            mongodbConn,
-        },
-    }
+  ctx.body = {
+    errno: 0,
+    data: {
+      name: 'test mysql',
+      mysqlConn: mysqlRes.length > 0,
+      redisConn: redisTestVal != null,
+      mongodbConn,
+    },
+  }
 })
 
 module.exports = router
