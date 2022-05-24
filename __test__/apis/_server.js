@@ -70,7 +70,7 @@ async function ajax(method = 'get', url = '', bodyOrParams = {}, headers = {}) {
 
 module.exports = {
   setToken(token) {
-    console.log('setToken...', token)
+    // console.log('setToken...', token)
     TOKEN = token
   },
   async get(url, params) {

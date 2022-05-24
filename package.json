@@ -12,6 +12,7 @@
     "lint-fix": "eslint --fix \"src/**/*.{js,ts}\""
   },
   "dependencies": {
+    "@alicloud/pop-core": "^1.7.10",
     "ajv": "^8.11.0",
     "axios": "^0.26.1",
     "debug": "^4.1.1",
