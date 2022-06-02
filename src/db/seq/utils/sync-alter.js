@@ -21,30 +21,30 @@ async function syncDb() {
 
   // 只适用于开发环境！！！
 
-  if (isDev) {
-    const git = simpleGit()
+  // if (isDev) {
+  const git = simpleGit()
 
-    // 获取 git status 修改的文件，modified 格式如  [ '.gitignore', 'package.json', 'src/models/README.md' ]
-    const { modified, not_added: nodeAdded, created, deleted, renamed } = await git.status()
+  // 获取 git status 修改的文件，modified 格式如  [ '.gitignore', 'package.json', 'src/models/README.md' ]
+  const { modified, not_added: nodeAdded, created, deleted, renamed } = await git.status()
 
-    const fileChanged = [...modified, ...nodeAdded, ...created, ...deleted, ...renamed]
-    if (fileChanged.length) {
-      // 到此，说明 git status 有改动
-      // 是否改动了 db 相关的文件
-      const changedDbFiles = fileChanged.some(file => {
-        // 改动了 src/models ，需要同步数据库
-        if (file.indexOf('src/models/') === 0) return true
-        // 改动了 src/db/seq ，需要同步数据库
-        if (file.indexOf('src/db/seq/') === 0) return true
-        // 其他情况，不同步
-        return false
-      })
-      // // 没改动 db 文件，则不需要同步
-      if (!changedDbFiles) needToSyncDb = false
-    }
-
-    // 如果 git status 没有改动，则照常同步数据表，重要！！！
+  const fileChanged = [...modified, ...nodeAdded, ...created, ...deleted, ...renamed]
+  if (fileChanged.length) {
+    // 到此，说明 git status 有改动
+    // 是否改动了 db 相关的文件
+    const changedDbFiles = fileChanged.some(file => {
+      // 改动了 src/models ，需要同步数据库
+      if (file.indexOf('src/models/') === 0) return true
+      // 改动了 src/db/seq ，需要同步数据库
+      if (file.indexOf('src/db/seq/') === 0) return true
+      // 其他情况，不同步
+      return false
+    })
+    // // 没改动 db 文件，则不需要同步
+    if (!changedDbFiles) needToSyncDb = false
   }
+
+  // 如果 git status 没有改动，则照常同步数据表，重要！！！
+  // }
   if (needToSyncDb) {
     await seq.sync({ alter: true })
   }
