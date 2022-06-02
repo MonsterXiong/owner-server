@@ -1,7 +1,7 @@
 /**
  * @description user model
  */
-// TODO: 完善 user model
+// TODO: 需要完善 user model
 const seq = require('../db/seq/seq')
 const { STRING, DATE, BOOLEAN, INTEGER } = require('../db/seq/types')
 
