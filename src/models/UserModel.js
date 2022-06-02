@@ -14,12 +14,10 @@ const User = seq.define('user', {
     },
     password: {
         type: STRING,
-        allowNull: false,
         comment: '密码',
     },
     phoneNumber: {
         type: STRING,
-        allowNull: false,
         unique: 'username',
         comment: '手机号，唯一',
     },

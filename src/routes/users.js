@@ -1,7 +1,7 @@
 const router = require('koa-router')()
 
 const sendVeriCode = require('../controller/users/sendVeriCode')
-const loginByPhoneNumber = require('../controller/users/loginByPhoneNumber')
+const { loginByPhoneNumber, loginByUsername } = require('../controller/users/loginByPhoneNumber')
 const updateUserInfo = require('../controller/users/updateUserInfo')
 
 const genValidator = require('../middlewares/genValidator')
@@ -28,8 +28,13 @@ router.post('/genVeriCode', genValidator(phoneNumberSchema), async ctx => {
 // 使用手机号登录
 router.post('/loginByPhoneNumber', genValidator(phoneNumberVeriCodeSchema), async ctx => {
   const { phoneNumber, veriCode } = ctx.request.body
-  console.log(phoneNumber, veriCode)
   const res = await loginByPhoneNumber(phoneNumber, veriCode)
+  ctx.body = res
+})
+// 使用用户名登录
+router.post('/loginByUsername', async ctx => {
+  const { username, password } = ctx.request.body
+  const res = await loginByUsername(username, password)
   ctx.body = res
 })
 
